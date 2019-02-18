@@ -1,4 +1,4 @@
-package myAlgorithm;
+package TwoMaps;
 
 public class MainApp {
 
