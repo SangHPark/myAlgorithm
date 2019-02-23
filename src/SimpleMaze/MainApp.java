@@ -20,15 +20,48 @@ public class MainApp {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
-		
+		printMaze();
+		findMazaPath (0,0);
+		printMaze();
 	}
 	
-	public static boolean findMazaPath(int x, int y) {
-		if (x < 0 || y < 0 || x >= N || y >= N) {
-			
+	public static void printMaze() {
+		for (int x = 0; x < N; x ++) {
+			for (int y = 0; y < N; y ++) {
+				System.out.print(maze[x][y]);
+			}
+			System.out.println("");
 		}
-		return false;
+	}
+	public static boolean findMazaPath(int x, int y) {
+		System.out.print("x= " + x + " y= " + y);
+		if (x < 0 || y < 0 || x >= N || y >= N) {
+			System.out.println(" maze= out of maze");
+		} 
+		else {
+			System.out.println(" maze= " + maze[x][y]);
+		}
+		
+		if (x < 0 || y < 0 || x >= N || y >= N) {
+			return false;
+		}
+		else if (maze[x][y] != PATHWAY_COLOR) {
+			return false;
+		}
+		else if (x == N-1 && y == N-1) {
+			maze[x][y] = PATH_COLOR;
+			return true;
+		}
+		else {
+			maze[x][y] = PATH_COLOR;
+			if (findMazaPath(x-1,y) || findMazaPath(x,y+1) 
+				|| findMazaPath(x+1,y) || findMazaPath(x,y-1)) {
+//				System.out.println("return true");
+				return true;
+			}
+			maze[x][y] = BLOCKED_COLOR;
+			return false; 
+		}
 	}
 	
 
