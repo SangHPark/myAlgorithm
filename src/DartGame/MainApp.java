@@ -87,6 +87,7 @@ public class MainApp {
 			}
 			lenPos ++;
 		}
+		scanner.close();
 		System.out.println(score[0] + score[1] + score[2]);
 	}
 
